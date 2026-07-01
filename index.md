@@ -43,7 +43,9 @@ It's built in Python (3.12+): metadata is fetched with httpx over GET only, pars
 | PulseMCP | ~205 | source-level |
 | **Total** | **~34,353** | snapshot: 2026-06-29 |
 
-Coverage is **uneven on purpose**, and it governs how to read everything below. Glama and the official registry (~85% of the total) expose repos and packages, so the detectors ran at full strength there. The two community registries — mcp.so and Smithery, where impersonation was most predicted to live — exposed only a name and a publisher per server (mcp.so has no clean structured data on detail pages; Smithery's unauthenticated catalog hard-caps enumeration), so only the weak signals could fire there. I did not aggregate these into one undifferentiated "scanned 34k" claim, and neither should anyone citing this.
+"Distinct servers" here means deduplicated by a stable per-registry key — a hash of the registry plus each server's own identifier (reverse-DNS namespace/name for the official registry; the registry's native server id, slug, or URL elsewhere) — so repeated versions and cross-page duplicates collapse to a single row.
+
+Coverage is **uneven on purpose**, and it governs how to read everything below. Glama and the official registry (~85% of the total) expose repos and packages, so the detectors ran at full strength there. The two community registries — mcp.so and Smithery, where impersonation was most predicted to live — exposed only a name and a publisher per server (mcp.so has no clean structured data on detail pages; Smithery's unauthenticated catalog hard-caps enumeration), so only the weak signals could fire there. PulseMCP's public API capped enumeration at snapshot — it returned errors past the first ~200 results — so only ~205 of its ~18,240 advertised servers resolved to readable source. I did not aggregate these into one undifferentiated "scanned 34k" claim, and neither should anyone citing this.
 
 ## What I found
 
