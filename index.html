@@ -139,6 +139,23 @@
     tbody tr:last-child td{background:#0d1524}
     code{color:var(--ink)}
   }
+
+  /* ---- Services / offer ---- */
+  .tier{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:var(--card);margin:14px 0}
+  .tier-top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-bottom:4px}
+  .tier-top h3{margin:0;font-size:1.18rem;color:var(--ink);font-weight:700;letter-spacing:-.01em}
+  .tier .price{font-family:var(--font-mono);font-size:1.18rem;font-weight:600;color:var(--accent);white-space:nowrap}
+  .tier .tier-sub{font-size:15px;color:var(--body);margin:0 0 16px}
+  .tier .covers{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+  .tier ul{margin:0 0 16px;padding-left:0;list-style:none}
+  .tier li{position:relative;padding-left:20px;margin:0 0 9px;font-size:15px;color:var(--body);line-height:1.55}
+  .tier li:last-child{margin-bottom:0}
+  .tier li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
+  .tier .meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+  .tier .meta b{color:var(--ink);font-weight:600}
+  .tier-2{border-color:var(--line-strong)}
+  .tier-2 .plus{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+  .method{margin-top:6px}
 </style>
 </head>
 <body>
@@ -152,7 +169,9 @@
         <a class="btn btn-primary" href="mailto:qcckindustries@gmail.com">Get in touch</a>
         <a class="btn btn-ghost" href="https://github.com/Nesqcck/mcp-registry-audit">View the scanner</a>
         <a class="btn btn-ghost" href="https://github.com/Nesqcck">GitHub</a>
-      </div>
+      
+          <a class="btn btn-ghost" href="#services">Services &amp; pricing</a>
+        </div>
       <p class="hero-email">or email <a href="mailto:qcckindustries@gmail.com">qcckindustries@gmail.com</a></p>
     </div>
   </header>
@@ -248,6 +267,61 @@
           <span class="t">AI-Agent Security Assessment — Damn Vulnerable LLM Agent</span>
           <div class="d">A full penetration-test report against a deliberately-vulnerable LLM banking agent: prompt injection → SQL injection → credential dump, broken access control (IDOR), a concealed breach, and system-prompt leakage — each reproduced and mapped to the OWASP LLM Top 10.</div>
           <span class="go">Read the report → &nbsp; <span class="muted" style="font-weight:400">(also as <a href="/dvla/DVLA-Security-Assessment-Report.pdf">PDF</a>)</span></span>
+        </a>
+      </div>
+    </section>
+
+
+    <section id="services">
+      <div class="wrap">
+        <p class="kicker">Services</p>
+        <h2>Two ways to get your agent assessed</h2>
+        <p class="subhead">External and artifact-based — I work from public data and what you share (your server list, your config). No access to your systems, codebase, or credentials required. Fixed scope, fixed price, fixed deliverable.</p>
+
+        <div class="tier">
+          <div class="tier-top">
+            <h3>MCP Exposure Scan</h3>
+            <span class="price">$750</span>
+          </div>
+          <p class="tier-sub">A focused read on the supply-chain risk in the MCP servers your agent depends on. Runs from public data plus your server list, so it needs almost nothing from you.</p>
+          <p class="covers">What it covers</p>
+          <ul>
+            <li>Your MCP server(s) and their declared tool surface — tool definitions that are poisoning-prone, over-permissioned, or misleadingly described</li>
+            <li>Supply-chain exposure across your MCP dependencies — rug-pull risk (a server that changed hands or behavior since you approved it) and lookalike/typosquat risk</li>
+            <li>Disclosure posture — whether there's a coordinated way to report a security issue to you, and public surfaces reachable without credentials</li>
+          </ul>
+          <div class="meta">
+            <span><b>Deliverable</b> &nbsp;Findings report, CVSS v3.1 + OWASP Agentic T1–T15</span>
+            <span><b>Turnaround</b> &nbsp;~3–5 business days</span>
+            <span><b>Needs</b> &nbsp;Your server list</span>
+          </div>
+        </div>
+
+        <div class="tier tier-2">
+          <div class="tier-top">
+            <h3>Agent Security Assessment</h3>
+            <span class="price">$3,000</span>
+          </div>
+          <p class="tier-sub">The full review — everything in the Exposure Scan, plus how your servers behave together, your credential posture, and the compliance exposure that follows. Delivered as a report you can put in front of an enterprise customer or your board.</p>
+          <p class="plus">Everything in the Exposure Scan, plus</p>
+          <ul>
+            <li><b>Composition analysis</b> — how the servers in your config interact: cross-server tool shadowing, where one server's output feeds another's input, and the blast radius if any single server is compromised. The analysis a single-server scan can't produce.</li>
+            <li><b>Credential &amp; disclosure posture</b> — how credentials flow through your agent surface, where they're exposed, and what a compromise would reach</li>
+            <li><b>Business-impact &amp; compliance exposure</b> — findings mapped to the regulatory surface that applies to you (GLBA, PCI-DSS, GDPR as relevant), so the report speaks to procurement and legal, not just engineering</li>
+          </ul>
+          <div class="meta">
+            <span><b>Deliverable</b> &nbsp;Full assessment report (see the sample below)</span>
+            <span><b>Turnaround</b> &nbsp;~1–2 weeks</span>
+            <span><b>Needs</b> &nbsp;Your agent config + server list</span>
+          </div>
+        </div>
+
+        <p class="scopenote method"><b>Methodology.</b> Findings are scored with CVSS v3.1 and mapped to the OWASP Agentic AI Threats &amp; Mitigations taxonomy (T1–T15) — the agent-specific framework, distinct from the general OWASP LLM Top 10. Every finding traces to specific evidence and a named threat class. <b>Not included</b> (so scope stays clear): full application penetration testing, whole-codebase source audit, anything requiring authorized access to your systems, and ongoing monitoring — those are separate engagements.</p>
+
+        <a class="worklink" href="/dvla/DVLA-Security-Assessment-Report.html">
+          <span class="t">Sample deliverable — see exactly what you'd receive</span>
+          <div class="d">The DVLA Security Assessment is a complete example of the Agent Security Assessment report — findings, CVSS scoring, OWASP mapping, and remediation guidance — run against a deliberately-vulnerable reference application, so you can see the format and depth before you commit.</div>
+          <span class="go">Read the sample report →</span>
         </a>
       </div>
     </section>
